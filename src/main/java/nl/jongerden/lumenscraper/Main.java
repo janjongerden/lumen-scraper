@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -50,7 +51,10 @@ public class Main {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         writeJson(path + "movies.json", movies, mapper);
-        writeJson(path + "movies-" + LocalDate.now() + ".json", movies, mapper);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+    	String date = sdf.format(new Date());
+        writeJson(path + "movies-" + date + ".json", movies, mapper);
     }
 
     private static void writeJson(String fileLocation, List<Movie> movies, ObjectMapper mapper) throws IOException {
