@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by jan on 11 January 2016.
@@ -99,10 +99,13 @@ public class ExtractorTest {
         List<Screening> screenings = getPawn().getScreenings();
 
         // the pawn movie has two screenings on vr 15 jan
-        List<String> times = screenings.stream()
-                .filter(s -> s.getDate().equalsIgnoreCase("vr 15 jan"))
-                .map(Screening::getTime)
-                .collect(Collectors.toList());
+        List<String> times = new ArrayList<>();
+
+        for (Screening screening : screenings) {
+            if (screening.getDate().equalsIgnoreCase("vr 15 jan")) {
+                times.add(screening.getTime());
+            }
+        }
 
         Assert.assertEquals("Are there two screenings?", 2, times.size());
 
