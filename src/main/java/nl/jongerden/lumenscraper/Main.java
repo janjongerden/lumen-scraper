@@ -5,16 +5,28 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by jan on 13 January 2016.
+ * Entry point for the scraping.
  */
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        String path = "/tmp/";
+        for (String arg : args) {
+            if (arg.startsWith("path=")) {
+                path = arg.substring(5);
+                if (!path.endsWith("/")) {
+                    path += "/";
+                }
+            }
+        }
+        System.out.println("scraping to destination dir '" + path + "'");
         // do post to get all current movies
         String allMovies = Scraper.getAllMovies();
 
@@ -37,7 +49,11 @@ public class Main {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String fileLocation = "/tmp/movies.json";
+        writeJson(path + "movies.json", movies, mapper);
+        writeJson(path + "movies-" + LocalDate.now() + ".json", movies, mapper);
+    }
+
+    private static void writeJson(String fileLocation, List<Movie> movies, ObjectMapper mapper) throws IOException {
         mapper.writeValue(new File(fileLocation), movies);
         System.out.println("Json weggeschreven naar '" + fileLocation + "'");
     }
