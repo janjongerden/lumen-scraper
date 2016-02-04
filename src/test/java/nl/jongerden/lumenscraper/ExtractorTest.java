@@ -3,11 +3,11 @@ package nl.jongerden.lumenscraper;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -18,37 +18,45 @@ public class ExtractorTest {
 
     private Set<String> getAllMovieUrls() {
 
-        return Extractor.getAllMovieUrls(getFile("/alle_films.html"));
+        return Extractor.getAllMovieUrls(getFile("alle_films.html"));
     }
 
     private Movie getLobster() {
-        String file = getFile("/lobster.html");
+        String file = getFile("lobster.html");
 
         String url = "https://www.filmhuis-lumen.nl/film/the-lobster";
         return Extractor.getMovie(file, url);
     }
 
     private Movie getPawn() {
-        String file = getFile("/pawn-sacrifice.html");
+        String file = getFile("pawn-sacrifice.html");
 
         String url = "https://www.filmhuis-lumen.nl/film/pawn-sacrifice";
         return Extractor.getMovie(file, url);
     }
 
-    private String getFile(String fileName) {
-//        try {
-//            Scanner s = new Scanner(getClass().getResource(fileName).getFile());
-        Path path = Paths.get(getClass().getResource(fileName).getFile());
 
-        String stringFromFile = null;
-        try {
-            stringFromFile = new String(
-                    java.nio.file.Files.readAllBytes(path));
+    private String getFile(String fileName) {
+
+        StringBuilder result = new StringBuilder("");
+
+        //Get file from resources folder
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
+        try (Scanner scanner = new Scanner(file)) {
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                result.append(line).append("\n");
+            }
+            scanner.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return stringFromFile;
+        return result.toString();
+
     }
 
     @Test

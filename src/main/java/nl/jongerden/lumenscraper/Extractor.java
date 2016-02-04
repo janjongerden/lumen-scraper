@@ -80,7 +80,7 @@ public class Extractor {
             }
             movie.setScreenings(screenings);
         } catch (Exception e) {
-            System.err.println("Unfortunate, peanut butter, something went wrong for url: " + url + " message = " + e.getMessage());
+            System.err.println("Unfortunately something went wrong for url: " + url + " message = " + e.getMessage());
         }
 
         return movie;
