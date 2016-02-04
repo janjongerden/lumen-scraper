@@ -29,7 +29,7 @@ public class ScraperTest {
 
     @Test
     public void testHtmlOfOneMovie() {
-        String movieInfo = Scraper.getMovieInfo(allMovieUrls.stream().findFirst().get());
+        String movieInfo = Scraper.getMovieInfo(allMovieUrls.iterator().next());
         Assert.assertTrue("The movie info should at least a div like this ", movieInfo.contains("<div class=\"pagewide carrousel timetable\">"));
     }
 }
