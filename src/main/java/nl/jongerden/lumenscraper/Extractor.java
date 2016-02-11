@@ -1,5 +1,6 @@
 package nl.jongerden.lumenscraper;
 
+import nl.jongerden.lumenscraper.util.DateUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -72,7 +74,7 @@ public class Extractor {
             for (int row = 1; row < rows.size(); row++) {
                 for (int i = 0; i < dates.size() - 1; i++) {
                     Element dateElement = dates.get(i + 1);
-                    String date = dateElement.html().toLowerCase();
+                    String date = DateUtil.convertLumenDate(dateElement.html(), LocalDate.now());
 
                     getTimeFromRow(rows.get(row).getElementsByTag("td"), i, date, screenings);
 

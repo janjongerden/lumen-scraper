@@ -93,7 +93,7 @@ public class ExtractorTest {
         Assert.assertEquals("Lobster should have one screening", 1, screenings.size());
 
         Screening screening = screenings.get(0);
-        Assert.assertEquals("Screening is on 12 jan", "di 12 jan", screening.getDate());
+        Assert.assertTrue("Screening is on 12 jan this year", screening.getDate().startsWith("12-01-2"));
 
         Assert.assertEquals("Screening is at 22:00", "22:00", screening.getTime());
 
@@ -110,7 +110,7 @@ public class ExtractorTest {
         List<String> times = new ArrayList<>();
 
         for (Screening screening : screenings) {
-            if (screening.getDate().equalsIgnoreCase("vr 15 jan")) {
+            if (screening.getDate().startsWith("15-01-2")) {
                 times.add(screening.getTime());
             }
         }
