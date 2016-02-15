@@ -7,6 +7,7 @@ public class Movie {
     private String url;
     private String description;
     private List<Screening> screenings;
+    private String shortDescription;
 
 
     public Movie() {
@@ -64,5 +65,13 @@ public class Movie {
 
     public void setScreenings(List<Screening> screenings) {
         this.screenings = screenings;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }

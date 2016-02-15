@@ -43,7 +43,7 @@ public class Extractor {
     private static Document getDocument(File file) {
         Document doc = null;
         try {
-            doc =Jsoup.parse(file, "UTF-8");
+            doc = Jsoup.parse(file, "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,6 +63,9 @@ public class Extractor {
 
             String description = doc.getElementsByClass("feature").html();
             movie.setDescription(description);
+
+            String shortDescription = doc.getElementsByClass("theatre-post-short-text").get(0).text();
+            movie.setShortDescription(shortDescription);
 
             Element timeTable = doc.getElementsByClass("wpt_production_timetable").get(0);
 

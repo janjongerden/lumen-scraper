@@ -50,7 +50,6 @@ public class Scraper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        System.out.println("html ziet er zo uit :" + html);
         return html;
     }
 }

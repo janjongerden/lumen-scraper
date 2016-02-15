@@ -9,6 +9,10 @@ public class Screening {
     private String time;
     private String bookingUrl;
 
+    public Screening () {
+
+    }
+
     public void setDate(String date) {
         this.date = date;
     }

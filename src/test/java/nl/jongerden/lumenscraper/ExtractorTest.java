@@ -88,6 +88,11 @@ public class ExtractorTest {
     }
 
     @Test
+    public void checkShortDescription() {
+        Assert.assertEquals("Short description should be okay", "The Lobster is een licht absurdistische film met een ernstige ondertoon en een melancholisch randje.Hij toont een originele zoektocht naar de vraag wat de betekenis van ideologieën feitelijk is en of wij uiteindelijk niet beter af zouden zijn zonder.", getLobster().getShortDescription());
+    }
+
+    @Test
     public void checkSingleScreening() {
         List<Screening> screenings = getLobster().getScreenings();
         Assert.assertEquals("Lobster should have one screening", 1, screenings.size());
