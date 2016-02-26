@@ -6,8 +6,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -38,16 +36,6 @@ public class Extractor {
         }
 
         return urls;
-    }
-
-    private static Document getDocument(File file) {
-        Document doc = null;
-        try {
-            doc = Jsoup.parse(file, "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return doc;
     }
 
     public static Movie getMovie(String html, String url) {
