@@ -24,7 +24,7 @@ public class DateUtil {
         }
 
         LocalDate date = LocalDate.of(year, month, day);
-        return date.format(DateTimeFormatter.ofPattern("dd-MM-YYYY"));
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
     }
 
     private static int getMonth(String month) {

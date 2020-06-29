@@ -15,7 +15,7 @@ public class DateUtilTest {
     @Test
     public void testConvert() {
         LocalDate today = LocalDate.now();
-        assertEquals("19-02-" + currentYear, DateUtil.convertLumenDate("vr 19 feb", today));
+        assertEquals("31-12-" + currentYear, DateUtil.convertLumenDate("vr 31 dec", today));
     }
 
     @Test
